@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>THE OGs — Week 1 Preview</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0A0B14;background-image:radial-gradient(circle at 10% 0%, rgba(255,122,26,0.15), transparent 40%),radial-gradient(circle at 90% 100%, rgba(34,229,255,0.12), transparent 40%);color:#F5F6FA;font-family:'Inter',sans-serif;min-height:100vh;padding:32px 16px 60px;}
+h1{font-family:'Anton',sans-serif;font-size:28px;text-align:center;letter-spacing:0.5px;margin-bottom:6px;}
+.subtitle{text-align:center;color:#7A7D96;font-size:13px;margin-bottom:28px;letter-spacing:1px;text-transform:uppercase;}
+.gallery{display:flex;flex-direction:column;align-items:center;gap:28px;max-width:480px;margin:0 auto;}
+.card{width:100%;background:#15171f;border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;}
+.card img{width:100%;display:block;}
+.share-btn{width:100%;padding:14px;background:linear-gradient(90deg, #FF7A1A, #22E5FF);border:none;color:#0A0B14;font-family:'Inter',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.5px;cursor:pointer;}
+</style></head>
+<body>
+<h1>THE OGs — Week 1 Preview</h1>
+<div class="subtitle">Tap Share on any card to post it</div>
+<div class="gallery"><div class="card">
+<img src="1_full_weekly_schedule.png" alt="Card 1"/>
+<button class="share-btn" onclick="shareImage('1_full_weekly_schedule.png')"><span>Share</span></button>
+</div><div class="card">
+<img src="2_matchup_preview_1.png" alt="Card 2"/>
+<button class="share-btn" onclick="shareImage('2_matchup_preview_1.png')"><span>Share</span></button>
+</div><div class="card">
+<img src="2_matchup_preview_2.png" alt="Card 3"/>
+<button class="share-btn" onclick="shareImage('2_matchup_preview_2.png')"><span>Share</span></button>
+</div><div class="card">
+<img src="2_matchup_preview_3.png" alt="Card 4"/>
+<button class="share-btn" onclick="shareImage('2_matchup_preview_3.png')"><span>Share</span></button>
+</div><div class="card">
+<img src="3_game_of_the_week.png" alt="Card 5"/>
+<button class="share-btn" onclick="shareImage('3_game_of_the_week.png')"><span>Share</span></button>
+</div></div>
+<script>
+async function shareImage(filename){
+  try{
+    const resp = await fetch(filename);
+    const blob = await resp.blob();
+    const file = new File([blob], filename, {type: blob.type});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], title:'Fantasy Social'});
+    } else {
+      const a = document.createElement('a');
+      a.href = filename; a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+  }catch(e){ console.error(e); }
+}
+</script>
+</body></html>

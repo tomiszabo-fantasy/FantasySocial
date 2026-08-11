@@ -7,18 +7,12 @@
 a { color: inherit; text-decoration: none; }
 html, body { background-color: #0B0C10; }
 body {
-  position: relative;
-  color: #F5F6FA; font-family: 'Inter', sans-serif; min-height: 100vh; padding-bottom: 60px;
+  color: #F5F6FA; font-family: 'Inter', sans-serif; min-height: 100vh;
 }
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-image: linear-gradient(rgba(255,255,255,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px);
-  background-size: 28px 28px;
-  -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 40%, transparent 100%);
-  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 40%, transparent 100%);
+.content-bg {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTAiIGhlaWdodD0iMTgwIj48cGF0aCBkPSJNMCw0MCBINzAgVjExMCBIMTkwIiBmaWxsPSJub25lIiBzdHJva2U9IiUyM0ZGNkEzRCIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9IjAuMTQiLz48cGF0aCBkPSJNNDAsMCBWNjAgSDE5MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIlMjNGRjZBM0QiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjEiLz48cGF0aCBkPSJNMCwxNTAgSDkwIFYxODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iJTIzRkY2QTNEIiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iMC4xMiIvPjxjaXJjbGUgY3g9IjcwIiBjeT0iNDAiIHI9IjIuNSIgZmlsbD0iJTIzRkY2QTNEIiBvcGFjaXR5PSIwLjI1Ii8+PGNpcmNsZSBjeD0iNzAiIGN5PSIxMTAiIHI9IjIuNSIgZmlsbD0iJTIzRkY2QTNEIiBvcGFjaXR5PSIwLjIiLz48Y2lyY2xlIGN4PSI0MCIgY3k9IjYwIiByPSIyLjUiIGZpbGw9IiUyM0ZGNkEzRCIgb3BhY2l0eT0iMC4yIi8+PHJlY3QgeD0iODYiIHk9IjE0NiIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIlMjNGRjZBM0QiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+PC9zdmc+');
+  background-repeat: repeat;
+  padding-bottom: 60px;
 }
 .brand-row { display: flex; align-items: center; gap: 8px; padding: 20px 24px; }
 .brand-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #FF7A1A, #22E5FF); flex-shrink: 0; }
@@ -54,7 +48,7 @@ body::before {
 <a class="back-btn" href="../"><i class="ti ti-arrow-left" style="font-size:15px;"></i></a>
 <div class="crumbs"><a href="../../">Home</a><span class="sep">/</span><a href="../">Neon</a><span class="sep">/</span><span class="current">GRIDIRON GLADIATORS</span></div>
 </div>
-<div class="page-title">GRIDIRON GLADIATORS</div><div class="section"><div class="grid grid-3"><a class="icon-tile" href="Week 1/">
+<div class="content-bg"><div class="page-title">GRIDIRON GLADIATORS</div><div class="section"><div class="grid grid-3"><a class="icon-tile" href="Week 1/">
 <i class="ti ti-calendar-week"></i>
 <div class="tile-label">Week 1</div>
 </a><a class="icon-tile" href="Week 2/">
@@ -63,5 +57,5 @@ body::before {
 </a><a class="icon-tile" href="Week 3/">
 <i class="ti ti-calendar-week"></i>
 <div class="tile-label">Week 3</div>
-</a></div></div>
+</a></div></div></div>
 </body></html>

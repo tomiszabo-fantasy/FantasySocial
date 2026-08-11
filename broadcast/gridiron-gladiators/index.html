@@ -18,20 +18,23 @@ body {
 .app-shell { display: flex; align-items: flex-start; }
 .brand-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #FF7A1A, #22E5FF); flex-shrink: 0; }
 .brand-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.2px; }
-.sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; background: #0E0F14; border-right: 1px solid rgba(255,255,255,0.08); overflow-y: auto; z-index: 50; transition: transform .25s ease; }
+.sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: 224px; background: #0E0F14; border-right: 1px solid rgba(255,255,255,0.08); overflow-y: auto; z-index: 50; transition: transform .25s ease; }
 .sidebar-header { display: flex; align-items: center; gap: 8px; padding: 20px 18px; }
+.sidebar-home-btn { display: flex; align-items: center; gap: 8px; margin: 0 12px 10px; padding: 9px 10px; border-radius: 8px; font-size: 15px; font-weight: 600; color: #F5F6FA; background: rgba(255,255,255,0.05); }
+.sidebar-home-btn i { font-size: 16px; color: #22E5FF; }
+.sidebar-home-btn:hover { background: rgba(255,255,255,0.09); }
 .sidebar-tree { padding: 6px 12px 24px; }
 .nav-node { }
 .nav-row { display: flex; align-items: center; gap: 2px; }
-.nav-toggle { width: 22px; height: 22px; border: none; background: transparent; color: #9497A6; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: transform .15s ease; }
+.nav-toggle { width: 22px; height: 22px; border: none; background: transparent; color: #9497A6; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: transform .15s ease; font-size: 15px; }
 .nav-toggle.leaf { visibility: hidden; }
 .nav-node.open > .nav-row .nav-toggle i { transform: rotate(90deg); }
-.nav-link { flex: 1; padding: 7px 6px; font-size: 13px; color: #C7C9D6; border-radius: 8px; }
+.nav-link { flex: 1; padding: 7px 6px; font-size: 15px; color: #C7C9D6; border-radius: 8px; }
 .nav-link:hover { background: rgba(255,255,255,0.06); }
 .nav-link.active { color: #22E5FF; font-weight: 600; background: rgba(34,229,255,0.1); }
 .nav-children { display: none; margin-left: 18px; border-left: 1px solid rgba(255,255,255,0.07); padding-left: 6px; }
 .nav-node.open > .nav-children { display: block; }
-.main-content { flex: 1; margin-left: 280px; min-width: 0; }
+.main-content { flex: 1; margin-left: 224px; min-width: 0; }
 .topbar { display: none; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .hamburger-btn { width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: #14151C; color: #F5F6FA; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; font-size: 18px; }
 .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 40; }
@@ -48,6 +51,9 @@ body {
 .card-social-btn { width: 30px; height: 30px; border-radius: 50%; background: #14151C; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 13px; text-decoration: none; }
 .section { padding: 24px; }
 .tagline { text-align: center; font-size: 13px; color: #9497A6; margin-bottom: 28px; }
+.welcome-card { max-width: 420px; margin: 0 auto 32px; background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 36px 24px; text-align: center; }
+.welcome-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; }
+.welcome-sub { font-size: 13px; color: #9497A6; margin-top: 8px; }
 .grid { display: grid; gap: 14px; max-width: 640px; margin: 0 auto; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -82,6 +88,7 @@ body {
 <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 <div class="sidebar" id="sidebar">
   <div class="sidebar-header"><div class="brand-mark"></div><div class="brand-name">FANTASY SOCIAL</div></div>
+  <a class="sidebar-home-btn" href="../../"><i class="ti ti-home"></i> Home</a>
   <div class="sidebar-tree" id="sidebar-tree"><div class="empty" style="padding:12px;text-align:left;">Loading…</div></div>
 </div>
 <div class="main-content"><div class="content-bg"><div class="page-title">GRIDIRON GLADIATORS</div><div class="section"><div class="grid grid-3"><a class="icon-tile" href="Week 1/">

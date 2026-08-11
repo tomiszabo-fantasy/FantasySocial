@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>THE OGs</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.44.0/tabler-icons.min.css">
 <style>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,6 +43,8 @@ body {
 .thumb { background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden; }
 .thumb img { width: 100%; display: block; }
 .share-btn { width: 100%; padding: 14px; border: none; background: linear-gradient(90deg, #FF7A1A, #22E5FF); color: #0B0C10; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.ig-btn { display: none; width: 100%; padding: 14px; border: none; border-top: 1px solid rgba(255,255,255,0.1); background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); color: #fff; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.ig-btn.show { display: flex; }
 .lightbox { position: fixed; inset: 0; background: rgba(5,6,9,0.92); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; }
 .lightbox.open { display: flex; }
 .lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }

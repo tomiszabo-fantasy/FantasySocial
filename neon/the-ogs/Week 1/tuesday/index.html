@@ -42,6 +42,10 @@ body {
 .thumb { background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden; }
 .thumb img { width: 100%; display: block; }
 .share-btn { width: 100%; padding: 14px; border: none; background: linear-gradient(90deg, #FF7A1A, #22E5FF); color: #0B0C10; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.lightbox { position: fixed; inset: 0; background: rgba(5,6,9,0.92); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.lightbox-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); background: #16171F; color: #F5F6FA; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; }
 </style></head>
 <body>
 <div class="brand-row"><div class="brand-mark"></div><div class="brand-name">FANTASY SOCIAL</div></div><div class="crumb-row">
@@ -51,25 +55,36 @@ body {
 <div class="content-bg"><div class="page-title">Week 1</div>
 <div class="page-subtitle">Tuesday Recap</div>
 <div class="section"><div class="grid grid-2 wide-3"><div class="thumb">
-<img src="1_full_weekly_results.png" alt="Card 1"/>
+<img src="1_full_weekly_results.png" alt="Card 1" onclick="openLightbox('1_full_weekly_results.png')" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('1_full_weekly_results.png')"><i class="ti ti-share-2"></i> Share</button>
 </div><div class="thumb">
-<img src="2_matchup_result_1.png" alt="Card 2"/>
+<img src="2_matchup_result_1.png" alt="Card 2" onclick="openLightbox('2_matchup_result_1.png')" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('2_matchup_result_1.png')"><i class="ti ti-share-2"></i> Share</button>
 </div><div class="thumb">
-<img src="2_matchup_result_2.png" alt="Card 3"/>
+<img src="2_matchup_result_2.png" alt="Card 3" onclick="openLightbox('2_matchup_result_2.png')" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('2_matchup_result_2.png')"><i class="ti ti-share-2"></i> Share</button>
 </div><div class="thumb">
-<img src="2_matchup_result_3.png" alt="Card 4"/>
+<img src="2_matchup_result_3.png" alt="Card 4" onclick="openLightbox('2_matchup_result_3.png')" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('2_matchup_result_3.png')"><i class="ti ti-share-2"></i> Share</button>
 </div><div class="thumb">
-<img src="3_king_of_the_week.png" alt="Card 5"/>
+<img src="3_king_of_the_week.png" alt="Card 5" onclick="openLightbox('3_king_of_the_week.png')" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('3_king_of_the_week.png')"><i class="ti ti-share-2"></i> Share</button>
 </div><div class="thumb">
-<img src="4_closest_game_result.png" alt="Card 6"/>
+<img src="4_closest_game_result.png" alt="Card 6" onclick="openLightbox('4_closest_game_result.png')" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('4_closest_game_result.png')"><i class="ti ti-share-2"></i> Share</button>
 </div></div></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
+  <img id="lightbox-img" src="" alt="Enlarged card"/>
+</div>
 <script>
+function openLightbox(filename){
+  document.getElementById('lightbox-img').src = filename;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
 async function shareImage(filename){
   try{
     const resp = await fetch(filename);

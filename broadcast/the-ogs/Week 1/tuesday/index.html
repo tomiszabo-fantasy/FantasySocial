@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>THE OGs — Week 1 Recap</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.44.0/tabler-icons.min.css">
+<style>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+html, body { background-color: #0B0C10; }
+body {
+  color: #F5F6FA; font-family: 'Inter', sans-serif; min-height: 100vh;
+}
+.content-bg {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTAiIGhlaWdodD0iMTgwIj48cGF0aCBkPSJNMCw0MCBINzAgVjExMCBIMTkwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjZBM0QiIHN0cm9rZS13aWR0aD0iMS40IiBvcGFjaXR5PSIwLjE0Ii8+PHBhdGggZD0iTTQwLDAgVjYwIEgxOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNkEzRCIgc3Ryb2tlLXdpZHRoPSIxLjQiIG9wYWNpdHk9IjAuMSIvPjxwYXRoIGQ9Ik0wLDE1MCBIOTAgVjE4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY2QTNEIiBzdHJva2Utd2lkdGg9IjEuNCIgb3BhY2l0eT0iMC4xMiIvPjxjaXJjbGUgY3g9IjcwIiBjeT0iNDAiIHI9IjIuNSIgZmlsbD0iI0ZGNkEzRCIgb3BhY2l0eT0iMC4yNSIvPjxjaXJjbGUgY3g9IjcwIiBjeT0iMTEwIiByPSIyLjUiIGZpbGw9IiNGRjZBM0QiIG9wYWNpdHk9IjAuMiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjAiIHI9IjIuNSIgZmlsbD0iI0ZGNkEzRCIgb3BhY2l0eT0iMC4yIi8+PHJlY3QgeD0iODYiIHk9IjE0NiIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY2QTNEIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMiIvPjwvc3ZnPg==');
+  background-repeat: repeat;
+  padding-bottom: 60px;
+}
+.brand-row { display: flex; align-items: center; gap: 8px; padding: 20px 24px; }
+.brand-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #FF7A1A, #22E5FF); flex-shrink: 0; }
+.brand-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.2px; }
+.crumb-row { display: flex; align-items: center; gap: 12px; padding: 0 24px 18px; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 28px; }
+.back-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: #16171F; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.crumbs { font-size: 12px; color: #9497A6; }
+.crumbs .current { color: #F5F6FA; }
+.crumbs .sep { opacity: 0.4; margin: 0 2px; }
+.page-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; padding: 0 24px; }
+.page-subtitle { font-size: 11px; color: #9497A6; text-transform: uppercase; letter-spacing: 1px; padding: 4px 24px 0; }
+.section { padding: 24px; }
+.tagline { text-align: center; font-size: 13px; color: #9497A6; margin-bottom: 28px; }
+.grid { display: grid; gap: 14px; max-width: 640px; margin: 0 auto; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 640px) { .grid-2.wide-3 { grid-template-columns: repeat(3, 1fr); } }
+.glass-tile { display: block; background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 18px; }
+.glass-tile .swatch { width: 100%; height: 48px; border-radius: 10px; margin-bottom: 14px; }
+.glass-tile .tile-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; }
+.glass-tile .tile-sub { font-size: 12px; color: #9497A6; margin-top: 3px; }
+.icon-tile { display: flex; flex-direction: column; gap: 10px; background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 20px; }
+.icon-tile i { font-size: 24px; color: #22E5FF; }
+.icon-tile .tile-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; }
+.icon-tile .tile-sub { font-size: 11px; color: #9497A6; text-transform: uppercase; letter-spacing: 0.5px; }
+.empty { text-align: center; color: #9497A6; font-size: 14px; grid-column: 1 / -1; }
+.thumb { background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden; }
+.thumb img { width: 100%; display: block; }
+.share-btn { width: 100%; padding: 14px; border: none; background: linear-gradient(90deg, #FF7A1A, #22E5FF); color: #0B0C10; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+</style></head>
+<body>
+<div class="brand-row"><div class="brand-mark"></div><div class="brand-name">FANTASY SOCIAL</div></div><div class="crumb-row">
+<a class="back-btn" href="../"><i class="ti ti-arrow-left" style="font-size:15px;color:#22E5FF;"></i></a>
+<div class="crumbs"><a href="../../../../">Home</a><span class="sep">/</span><a href="../../../">Broadcast</a><span class="sep">/</span><a href="../../">THE OGs</a><span class="sep">/</span><a href="../">Week 1</a><span class="sep">/</span><span class="current">Tuesday</span></div>
+</div>
+<div class="content-bg"><div class="page-title">Week 1</div>
+<div class="page-subtitle">Tuesday Recap</div>
+<div class="section"><div class="grid grid-2 wide-3"><div class="thumb">
+<img src="1_full_weekly_results.png" alt="Card 1"/>
+<button class="share-btn" onclick="shareImage('1_full_weekly_results.png')"><i class="ti ti-share-2"></i> Share</button>
+</div><div class="thumb">
+<img src="2_matchup_result_1.png" alt="Card 2"/>
+<button class="share-btn" onclick="shareImage('2_matchup_result_1.png')"><i class="ti ti-share-2"></i> Share</button>
+</div><div class="thumb">
+<img src="2_matchup_result_2.png" alt="Card 3"/>
+<button class="share-btn" onclick="shareImage('2_matchup_result_2.png')"><i class="ti ti-share-2"></i> Share</button>
+</div><div class="thumb">
+<img src="2_matchup_result_3.png" alt="Card 4"/>
+<button class="share-btn" onclick="shareImage('2_matchup_result_3.png')"><i class="ti ti-share-2"></i> Share</button>
+</div><div class="thumb">
+<img src="3_king_of_the_week.png" alt="Card 5"/>
+<button class="share-btn" onclick="shareImage('3_king_of_the_week.png')"><i class="ti ti-share-2"></i> Share</button>
+</div><div class="thumb">
+<img src="4_closest_game_result.png" alt="Card 6"/>
+<button class="share-btn" onclick="shareImage('4_closest_game_result.png')"><i class="ti ti-share-2"></i> Share</button>
+</div></div></div>
+<script>
+async function shareImage(filename){
+  try{
+    const resp = await fetch(filename);
+    const blob = await resp.blob();
+    const file = new File([blob], filename, {type: blob.type});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], title:'Fantasy Social'});
+    } else {
+      const a = document.createElement('a');
+      a.href = filename; a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+  }catch(e){ console.error(e); }
+}
+</script></div>
+</body></html>

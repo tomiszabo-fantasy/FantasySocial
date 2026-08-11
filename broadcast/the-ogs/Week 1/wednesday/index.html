@@ -33,6 +33,8 @@ body {
 .crumbs .sep { opacity: 0.4; margin: 0 2px; }
 .page-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; padding: 0 24px; }
 .page-subtitle { font-size: 11px; color: #9497A6; text-transform: uppercase; letter-spacing: 1px; padding: 4px 24px 0; }
+.social-row { display: flex; justify-content: center; gap: 12px; padding: 18px 24px 0; }
+.social-btn { width: 40px; height: 40px; border-radius: 50%; background: #14151C; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 18px; text-decoration: none; cursor: pointer; font-family: inherit; }
 .section { padding: 24px; }
 .tagline { text-align: center; font-size: 13px; color: #9497A6; margin-bottom: 28px; }
 .grid { display: grid; gap: 14px; max-width: 640px; margin: 0 auto; }
@@ -51,8 +53,6 @@ body {
 .thumb { background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden; }
 .thumb img { width: 100%; display: block; }
 .share-btn { width: 100%; padding: 14px; border: none; background: linear-gradient(90deg, #FF7A1A, #22E5FF); color: #0B0C10; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
-.ig-btn { display: none; width: 100%; padding: 14px; border: none; border-top: 1px solid rgba(255,255,255,0.1); background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); color: #fff; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
-.ig-btn.show { display: flex; }
 .lightbox { position: fixed; inset: 0; background: rgba(5,6,9,0.92); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; }
 .lightbox.open { display: flex; }
 .lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
@@ -68,26 +68,28 @@ body {
 </div>
 <div class="content-bg"><div class="page-title">Week 1</div>
 <div class="page-subtitle">Wednesday Preview</div>
+<div class="social-row">
+<a class="social-btn" style="color:#25D366;" href="https://wa.me/?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
+<button class="social-btn" style="color:#00B2FF;" onclick="shareMessenger('https://tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%201/wednesday/')"><i class="ti ti-brand-messenger"></i></button>
+<a class="social-btn" style="color:#F5F6FA;" href="https://twitter.com/intent/tweet?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview&url=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/" target="_blank" rel="noopener"><i class="ti ti-brand-x"></i></a>
+<a class="social-btn" style="color:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
+<a class="social-btn" style="color:#9497A6;" href="mailto:?subject=THE%20OGs%20%E2%80%94%20Week%201%20Preview&body=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/"><i class="ti ti-mail"></i></a>
+</div>
 <div class="section"><div class="grid grid-2 wide-3"><div class="thumb">
 <img src="1_full_weekly_schedule.png" alt="Card 1" onclick="openLightbox(0)" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('1_full_weekly_schedule.png')"><i class="ti ti-share-2"></i> Share</button>
-<button class="ig-btn" onclick="shareToInstagramStory('1_full_weekly_schedule.png')"><i class="ti ti-brand-instagram"></i> Add to IG Story</button>
 </div><div class="thumb">
 <img src="2_matchup_preview_1.png" alt="Card 2" onclick="openLightbox(1)" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('2_matchup_preview_1.png')"><i class="ti ti-share-2"></i> Share</button>
-<button class="ig-btn" onclick="shareToInstagramStory('2_matchup_preview_1.png')"><i class="ti ti-brand-instagram"></i> Add to IG Story</button>
 </div><div class="thumb">
 <img src="2_matchup_preview_2.png" alt="Card 3" onclick="openLightbox(2)" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('2_matchup_preview_2.png')"><i class="ti ti-share-2"></i> Share</button>
-<button class="ig-btn" onclick="shareToInstagramStory('2_matchup_preview_2.png')"><i class="ti ti-brand-instagram"></i> Add to IG Story</button>
 </div><div class="thumb">
 <img src="2_matchup_preview_3.png" alt="Card 4" onclick="openLightbox(3)" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('2_matchup_preview_3.png')"><i class="ti ti-share-2"></i> Share</button>
-<button class="ig-btn" onclick="shareToInstagramStory('2_matchup_preview_3.png')"><i class="ti ti-brand-instagram"></i> Add to IG Story</button>
 </div><div class="thumb">
 <img src="3_game_of_the_week.png" alt="Card 5" onclick="openLightbox(4)" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('3_game_of_the_week.png')"><i class="ti ti-share-2"></i> Share</button>
-<button class="ig-btn" onclick="shareToInstagramStory('3_game_of_the_week.png')"><i class="ti ti-brand-instagram"></i> Add to IG Story</button>
 </div></div></div>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()"><i class="ti ti-x"></i></button>
@@ -116,21 +118,6 @@ document.addEventListener('keydown', function(e){
   if(e.key === 'ArrowRight') stepLightbox(1);
   if(e.key === 'Escape') closeLightbox();
 });
-function isIOSDevice(){
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-}
-function shareToInstagramStory(filename){
-  // Best-effort: Instagram officially only supports this via a native app's
-  // pasteboard, but passing the image URL directly in the query string is the
-  // common workaround for triggering it from a web page. Not guaranteed by Meta.
-  var appId = '';
-  var imageUrl = new URL(filename, window.location.href).href;
-  var url = 'instagram-stories://share?source_application=' + encodeURIComponent(appId) + '&backgroundImage=' + encodeURIComponent(imageUrl);
-  window.location.href = url;
-}
-if(isIOSDevice()){
-  document.querySelectorAll('.ig-btn').forEach(function(btn){ btn.classList.add('show'); });
-}
 async function shareImage(filename){
   try{
     const resp = await fetch(filename);

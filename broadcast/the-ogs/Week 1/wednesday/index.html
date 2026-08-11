@@ -23,15 +23,34 @@ body {
   background-repeat: repeat;
   padding-bottom: 60px;
 }
-.brand-row { display: flex; align-items: center; gap: 8px; padding: 20px 24px; }
+.app-shell { display: flex; align-items: flex-start; }
 .brand-mark { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, #FF7A1A, #22E5FF); flex-shrink: 0; }
 .brand-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.2px; }
-.crumb-row { display: flex; align-items: center; gap: 12px; padding: 0 24px 18px; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 28px; }
-.back-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: #16171F; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.crumbs { font-size: 12px; color: #9497A6; }
-.crumbs .current { color: #F5F6FA; }
-.crumbs .sep { opacity: 0.4; margin: 0 2px; }
-.page-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; padding: 0 24px; }
+.sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: 280px; background: #0E0F14; border-right: 1px solid rgba(255,255,255,0.08); overflow-y: auto; z-index: 50; transition: transform .25s ease; }
+.sidebar-header { display: flex; align-items: center; gap: 8px; padding: 20px 18px; }
+.sidebar-tree { padding: 6px 12px 24px; }
+.nav-node { }
+.nav-row { display: flex; align-items: center; gap: 2px; }
+.nav-toggle { width: 22px; height: 22px; border: none; background: transparent; color: #9497A6; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: transform .15s ease; }
+.nav-toggle.leaf { visibility: hidden; }
+.nav-node.open > .nav-row .nav-toggle i { transform: rotate(90deg); }
+.nav-link { flex: 1; padding: 7px 6px; font-size: 13px; color: #C7C9D6; border-radius: 8px; }
+.nav-link:hover { background: rgba(255,255,255,0.06); }
+.nav-link.active { color: #22E5FF; font-weight: 600; background: rgba(34,229,255,0.1); }
+.nav-children { display: none; margin-left: 18px; border-left: 1px solid rgba(255,255,255,0.07); padding-left: 6px; }
+.nav-node.open > .nav-children { display: block; }
+.main-content { flex: 1; margin-left: 280px; min-width: 0; }
+.topbar { display: none; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.hamburger-btn { width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: #14151C; color: #F5F6FA; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; font-size: 18px; }
+.sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 40; }
+@media (max-width: 880px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main-content { margin-left: 0; }
+  .topbar { display: flex; }
+  .sidebar-backdrop.open { display: block; }
+}
+.page-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; padding: 28px 24px 0; }
 .page-subtitle { font-size: 11px; color: #9497A6; text-transform: uppercase; letter-spacing: 1px; padding: 4px 24px 0; }
 .card-social-row { display: flex; justify-content: center; gap: 8px; padding: 10px 8px 12px; }
 .card-social-btn { width: 30px; height: 30px; border-radius: 50%; background: #14151C; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 13px; text-decoration: none; }
@@ -62,18 +81,24 @@ body {
 .lightbox-arrow-right { right: 16px; }
 </style></head>
 <body>
-<div class="brand-row"><div class="brand-mark"></div><div class="brand-name">FANTASY SOCIAL</div></div><div class="crumb-row">
-<a class="back-btn" href="../"><i class="ti ti-arrow-left" style="font-size:15px;color:#22E5FF;"></i></a>
-<div class="crumbs"><a href="../../../../">Home</a><span class="sep">/</span><a href="../../../">Broadcast</a><span class="sep">/</span><a href="../../">THE OGs</a><span class="sep">/</span><a href="../">Week 1</a><span class="sep">/</span><span class="current">Wednesday</span></div>
+<div class="app-shell">
+<div class="topbar">
+  <button class="hamburger-btn" id="hamburger-btn"><i class="ti ti-menu-2"></i></button>
+  <div class="brand-mark" style="width:22px;height:22px;"></div>
+  <div class="brand-name" style="font-size:14px;">FANTASY SOCIAL</div>
 </div>
-<div class="content-bg"><div class="page-title">Week 1</div>
+<div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header"><div class="brand-mark"></div><div class="brand-name">FANTASY SOCIAL</div></div>
+  <div class="sidebar-tree" id="sidebar-tree"><div class="empty" style="padding:12px;text-align:left;">Loading…</div></div>
+</div>
+<div class="main-content"><div class="content-bg"><div class="page-title">Week 1</div>
 <div class="page-subtitle">Wednesday Preview</div>
 <div class="section"><div class="grid grid-2 wide-3"><div class="thumb">
 <img src="1_full_weekly_schedule.png" alt="Card 1" onclick="openLightbox(0)" style="cursor:pointer;"/>
 <button class="share-btn" onclick="shareImage('1_full_weekly_schedule.png')"><i class="ti ti-share-2"></i> Share</button>
 <div class="card-social-row">
 <a class="card-social-btn" style="color:#25D366;" href="https://wa.me/?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%201%20https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/1_full_weekly_schedule.png" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
-<a class="card-social-btn" style="color:#00B2FF;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/1_full_weekly_schedule.png" target="_blank" rel="noopener"><i class="ti ti-brand-messenger"></i></a>
 <a class="card-social-btn" style="color:#F5F6FA;" href="https://twitter.com/intent/tweet?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%201&url=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/1_full_weekly_schedule.png" target="_blank" rel="noopener"><i class="ti ti-brand-x"></i></a>
 <a class="card-social-btn" style="color:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/1_full_weekly_schedule.png" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
 <a class="card-social-btn" style="color:#9497A6;" href="mailto:?subject=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%201&body=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/1_full_weekly_schedule.png"><i class="ti ti-mail"></i></a>
@@ -83,7 +108,6 @@ body {
 <button class="share-btn" onclick="shareImage('2_matchup_preview_1.png')"><i class="ti ti-share-2"></i> Share</button>
 <div class="card-social-row">
 <a class="card-social-btn" style="color:#25D366;" href="https://wa.me/?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%202%20https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_1.png" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
-<a class="card-social-btn" style="color:#00B2FF;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_1.png" target="_blank" rel="noopener"><i class="ti ti-brand-messenger"></i></a>
 <a class="card-social-btn" style="color:#F5F6FA;" href="https://twitter.com/intent/tweet?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%202&url=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_1.png" target="_blank" rel="noopener"><i class="ti ti-brand-x"></i></a>
 <a class="card-social-btn" style="color:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_1.png" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
 <a class="card-social-btn" style="color:#9497A6;" href="mailto:?subject=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%202&body=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_1.png"><i class="ti ti-mail"></i></a>
@@ -93,7 +117,6 @@ body {
 <button class="share-btn" onclick="shareImage('2_matchup_preview_2.png')"><i class="ti ti-share-2"></i> Share</button>
 <div class="card-social-row">
 <a class="card-social-btn" style="color:#25D366;" href="https://wa.me/?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%203%20https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_2.png" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
-<a class="card-social-btn" style="color:#00B2FF;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_2.png" target="_blank" rel="noopener"><i class="ti ti-brand-messenger"></i></a>
 <a class="card-social-btn" style="color:#F5F6FA;" href="https://twitter.com/intent/tweet?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%203&url=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_2.png" target="_blank" rel="noopener"><i class="ti ti-brand-x"></i></a>
 <a class="card-social-btn" style="color:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_2.png" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
 <a class="card-social-btn" style="color:#9497A6;" href="mailto:?subject=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%203&body=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_2.png"><i class="ti ti-mail"></i></a>
@@ -103,7 +126,6 @@ body {
 <button class="share-btn" onclick="shareImage('2_matchup_preview_3.png')"><i class="ti ti-share-2"></i> Share</button>
 <div class="card-social-row">
 <a class="card-social-btn" style="color:#25D366;" href="https://wa.me/?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%204%20https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_3.png" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
-<a class="card-social-btn" style="color:#00B2FF;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_3.png" target="_blank" rel="noopener"><i class="ti ti-brand-messenger"></i></a>
 <a class="card-social-btn" style="color:#F5F6FA;" href="https://twitter.com/intent/tweet?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%204&url=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_3.png" target="_blank" rel="noopener"><i class="ti ti-brand-x"></i></a>
 <a class="card-social-btn" style="color:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_3.png" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
 <a class="card-social-btn" style="color:#9497A6;" href="mailto:?subject=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%204&body=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/2_matchup_preview_3.png"><i class="ti ti-mail"></i></a>
@@ -113,7 +135,6 @@ body {
 <button class="share-btn" onclick="shareImage('3_game_of_the_week.png')"><i class="ti ti-share-2"></i> Share</button>
 <div class="card-social-row">
 <a class="card-social-btn" style="color:#25D366;" href="https://wa.me/?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%205%20https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/3_game_of_the_week.png" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
-<a class="card-social-btn" style="color:#00B2FF;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/3_game_of_the_week.png" target="_blank" rel="noopener"><i class="ti ti-brand-messenger"></i></a>
 <a class="card-social-btn" style="color:#F5F6FA;" href="https://twitter.com/intent/tweet?text=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%205&url=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/3_game_of_the_week.png" target="_blank" rel="noopener"><i class="ti ti-brand-x"></i></a>
 <a class="card-social-btn" style="color:#1877F2;" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/3_game_of_the_week.png" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
 <a class="card-social-btn" style="color:#9497A6;" href="mailto:?subject=THE%20OGs%20%E2%80%94%20Week%201%20Preview%20%E2%80%94%20Card%205&body=https%3A//tomiszabo-fantasy.github.io/FantasySocial/broadcast/the-ogs/Week%25201/wednesday/3_game_of_the_week.png"><i class="ti ti-mail"></i></a>
@@ -160,5 +181,53 @@ async function shareImage(filename){
     }
   }catch(e){ console.error(e); }
 }
-</script></div>
+</script></div></div>
+</div>
+<script>
+(function(){
+  var rootPrefix = "../../../../";
+  var repoBase = "/FantasySocial/";
+  var currentPath = decodeURIComponent(window.location.pathname);
+  var idx = currentPath.indexOf(repoBase);
+  var relPath = idx >= 0 ? currentPath.slice(idx + repoBase.length) : "";
+
+  function esc(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  function nodeHtml(label, href, childrenHtml){
+    var isLeaf = !childrenHtml;
+    var decodedHref = href ? decodeURIComponent(href) : "";
+    var isActive = decodedHref && decodedHref === relPath;
+    var isAncestor = decodedHref && relPath.indexOf(decodedHref) === 0 && decodedHref !== relPath;
+    var openClass = isAncestor ? " open" : "";
+    var linkClass = isActive ? "nav-link active" : "nav-link";
+    var toggleClass = isLeaf ? "nav-toggle leaf" : "nav-toggle";
+    var linkHref = href ? rootPrefix + href : "#";
+    return '<div class="nav-node' + openClass + '"><div class="nav-row">'
+      + '<button class="' + toggleClass + '"><i class="ti ti-chevron-right"></i></button>'
+      + '<a class="' + linkClass + '" href="' + linkHref + '">' + esc(label) + '</a></div>'
+      + (childrenHtml ? '<div class="nav-children">' + childrenHtml + '</div>' : '')
+      + '</div>';
+  }
+  function renderDrops(drops){ return drops.map(function(d){ return nodeHtml(d.label, d.href, ''); }).join(''); }
+  function renderWeeks(weeks){ return weeks.map(function(w){ return nodeHtml(w.label, w.href, renderDrops(w.drops)); }).join(''); }
+  function renderLeagues(leagues){ return leagues.map(function(l){ return nodeHtml(l.label, l.href, renderWeeks(l.weeks)); }).join(''); }
+  function renderDesigns(designs){ return designs.map(function(d){ return nodeHtml(d.label, d.href, renderLeagues(d.leagues)); }).join(''); }
+
+  fetch(rootPrefix + "manifest.json")
+    .then(function(r){ return r.json(); })
+    .then(function(data){ document.getElementById('sidebar-tree').innerHTML = renderDesigns(data.designs); })
+    .catch(function(e){ console.error('Sidebar manifest failed to load', e); });
+
+  document.getElementById('sidebar-tree').addEventListener('click', function(e){
+    var btn = e.target.closest('.nav-toggle');
+    if(btn && !btn.classList.contains('leaf')){ btn.closest('.nav-node').classList.toggle('open'); }
+  });
+
+  var sidebar = document.getElementById('sidebar');
+  var backdrop = document.getElementById('sidebar-backdrop');
+  var hamburger = document.getElementById('hamburger-btn');
+  if(hamburger){ hamburger.addEventListener('click', function(){ sidebar.classList.add('open'); backdrop.classList.add('open'); }); }
+  if(backdrop){ backdrop.addEventListener('click', function(){ sidebar.classList.remove('open'); backdrop.classList.remove('open'); }); }
+})();
+</script>
 </body></html>

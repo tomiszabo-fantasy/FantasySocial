@@ -1,7 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Fantasy Social</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.44.0/tabler-icons.min.css">
 <style>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,9 +50,6 @@ body {
 .card-social-btn { width: 30px; height: 30px; border-radius: 50%; background: #14151C; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 13px; text-decoration: none; }
 .section { padding: 24px; }
 .tagline { text-align: center; font-size: 13px; color: #9497A6; margin-bottom: 28px; }
-.welcome-card { max-width: 420px; margin: 0 auto 32px; background: #14151C; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 36px 24px; text-align: center; }
-.welcome-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; }
-.welcome-sub { font-size: 13px; color: #9497A6; margin-top: 8px; }
 .grid { display: grid; gap: 14px; max-width: 640px; margin: 0 auto; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -79,81 +75,11 @@ body {
 .lightbox-arrow-right { right: 16px; }
 </style></head>
 <body>
-<div class="app-shell">
-<div class="topbar">
-  <button class="hamburger-btn" id="hamburger-btn"><i class="ti ti-menu-2"></i></button>
-  <div class="brand-mark" style="width:22px;height:22px;"></div>
-  <div class="brand-name" style="font-size:14px;">FANTASY SOCIAL</div>
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
+<a href="home/" style="display:block; width:100%; max-width:420px; background:#14151C; border:1px solid rgba(255,255,255,0.14); border-radius:28px; padding:56px 32px; text-align:center; transition:transform .15s ease;">
+<div class="brand-mark" style="width:56px;height:56px;border-radius:16px;margin:0 auto 22px;"></div>
+<div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;color:#F5F6FA;">Welcome to Fantasy Social</div>
+<div style="font-size:14px;color:#9497A6;margin-top:10px;">Tap to enter</div>
+</a>
 </div>
-<div class="sidebar-backdrop" id="sidebar-backdrop"></div>
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-header"><div class="brand-mark"></div><div class="brand-name">FANTASY SOCIAL</div></div>
-  <a class="sidebar-home-btn" href=""><i class="ti ti-home"></i> Home</a>
-  <div class="sidebar-tree" id="sidebar-tree"><div class="empty" style="padding:12px;text-align:left;">Loading…</div></div>
-</div>
-<div class="main-content"><div class="content-bg"><div class="section" style="padding-top:12px;">
-<div class="welcome-card">
-<div class="brand-mark" style="width:40px;height:40px;border-radius:12px;margin:0 auto 16px;"></div>
-<div class="welcome-title">Welcome to Fantasy Social</div>
-<div class="welcome-sub">Your league's weekly cards, ready to share.</div>
-</div>
-<div class="tagline">Pick a design to browse this season's cards</div>
-<div class="grid grid-2"><a class="glass-tile" href="neon/">
-<div class="swatch" style="background:linear-gradient(135deg,#FF7A1A,#22E5FF);"></div>
-<div class="tile-label">Neon</div>
-<div class="tile-sub">Stadium glow style</div>
-</a><a class="glass-tile" href="broadcast/">
-<div class="swatch" style="background:linear-gradient(135deg,#FF6A3D,#FFB199);"></div>
-<div class="tile-label">Broadcast</div>
-<div class="tile-sub">TV lower-third style</div>
-</a></div>
-</div></div></div>
-</div>
-<script>
-(function(){
-  var rootPrefix = "";
-  var repoBase = "/FantasySocial/";
-  var currentPath = decodeURIComponent(window.location.pathname);
-  var idx = currentPath.indexOf(repoBase);
-  var relPath = idx >= 0 ? currentPath.slice(idx + repoBase.length) : "";
-
-  function esc(s){ var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
-  function nodeHtml(label, href, childrenHtml){
-    var isLeaf = !childrenHtml;
-    var decodedHref = href ? decodeURIComponent(href) : "";
-    var isActive = decodedHref && decodedHref === relPath;
-    var isAncestor = decodedHref && relPath.indexOf(decodedHref) === 0 && decodedHref !== relPath;
-    var openClass = isAncestor ? " open" : "";
-    var linkClass = isActive ? "nav-link active" : "nav-link";
-    var toggleClass = isLeaf ? "nav-toggle leaf" : "nav-toggle";
-    var linkHref = href ? rootPrefix + href : "#";
-    return '<div class="nav-node' + openClass + '"><div class="nav-row">'
-      + '<button class="' + toggleClass + '"><i class="ti ti-chevron-right"></i></button>'
-      + '<a class="' + linkClass + '" href="' + linkHref + '">' + esc(label) + '</a></div>'
-      + (childrenHtml ? '<div class="nav-children">' + childrenHtml + '</div>' : '')
-      + '</div>';
-  }
-  function renderDrops(drops){ return drops.map(function(d){ return nodeHtml(d.label, d.href, ''); }).join(''); }
-  function renderWeeks(weeks){ return weeks.map(function(w){ return nodeHtml(w.label, w.href, renderDrops(w.drops)); }).join(''); }
-  function renderLeagues(leagues){ return leagues.map(function(l){ return nodeHtml(l.label, l.href, renderWeeks(l.weeks)); }).join(''); }
-  function renderDesigns(designs){ return designs.map(function(d){ return nodeHtml(d.label, d.href, renderLeagues(d.leagues)); }).join(''); }
-
-  fetch(rootPrefix + "manifest.json")
-    .then(function(r){ return r.json(); })
-    .then(function(data){ document.getElementById('sidebar-tree').innerHTML = renderDesigns(data.designs); })
-    .catch(function(e){ console.error('Sidebar manifest failed to load', e); });
-
-  document.getElementById('sidebar-tree').addEventListener('click', function(e){
-    var btn = e.target.closest('.nav-toggle');
-    if(btn && !btn.classList.contains('leaf')){ btn.closest('.nav-node').classList.toggle('open'); }
-  });
-
-  var sidebar = document.getElementById('sidebar');
-  var backdrop = document.getElementById('sidebar-backdrop');
-  var hamburger = document.getElementById('hamburger-btn');
-  if(hamburger){ hamburger.addEventListener('click', function(){ sidebar.classList.add('open'); backdrop.classList.add('open'); }); }
-  if(backdrop){ backdrop.addEventListener('click', function(){ sidebar.classList.remove('open'); backdrop.classList.remove('open'); }); }
-})();
-</script>
 </body></html>

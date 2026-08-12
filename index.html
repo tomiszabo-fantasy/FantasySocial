@@ -9,19 +9,11 @@ html, body { background-color: #0B0C10; }
 body {
   color: #F5F6FA; font-family: 'Inter', sans-serif; min-height: 100vh;
 }
-@keyframes bgLinePulse { 0%, 100% { opacity: 0.65; } 50% { opacity: 1; } }
+@keyframes bgLinePulse { 0%, 100% { filter: brightness(0.85); } 50% { filter: brightness(1.25); } }
 .content-bg {
-  position: relative;
-  z-index: 0;
-  padding-bottom: 60px;
-}
-.content-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTAiIGhlaWdodD0iMTgwIj48cGF0aCBkPSJNMCw0MCBINzAgVjExMCBIMTkwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjZBM0QiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xOCIvPjxwYXRoIGQ9Ik00MCwwIFY2MCBIMTkwIiBmaWxsPSJub25lIiBzdHJva2U9IiNGRjZBM0QiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC4xNCIvPjxwYXRoIGQ9Ik0wLDE1MCBIOTAgVjE4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRkY2QTNEIiBzdHJva2Utd2lkdGg9IjMiIG9wYWNpdHk9IjAuMTYiLz48Y2lyY2xlIGN4PSI3MCIgY3k9IjQwIiByPSIzLjUiIGZpbGw9IiNGRjZBM0QiIG9wYWNpdHk9IjAuMyIvPjxjaXJjbGUgY3g9IjcwIiBjeT0iMTEwIiByPSIzLjUiIGZpbGw9IiNGRjZBM0QiIG9wYWNpdHk9IjAuMjUiLz48Y2lyY2xlIGN4PSI0MCIgY3k9IjYwIiByPSIzLjUiIGZpbGw9IiNGRjZBM0QiIG9wYWNpdHk9IjAuMjUiLz48cmVjdCB4PSI4NSIgeT0iMTQ1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNkEzRCIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuMjUiLz48L3N2Zz4=');
   background-repeat: repeat;
+  padding-bottom: 60px;
   animation: bgLinePulse 4s ease-in-out infinite;
 }
 .app-shell { display: block; }
@@ -87,15 +79,24 @@ body {
 <style>
 @keyframes fadeInUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 @keyframes pulse { 0%, 100% { opacity:0.5; } 50% { opacity:1; } }
-.landing-eyebrow { animation: fadeInUp 0.6s ease both; }
-.landing-title { animation: fadeInUp 0.6s ease 0.15s both; }
+.landing-logo { animation: fadeInUp 0.6s ease both; }
 .landing-hint { animation: fadeInUp 0.6s ease 0.3s both, pulse 2s ease-in-out 1.2s infinite; }
 </style>
 </head>
 <body>
 <a href="home/" class="content-bg" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; padding:24px; text-align:center;">
-<div class="landing-eyebrow" style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(16px, 4vw, 22px);color:#9497A6;">Welcome to</div>
-<div class="landing-title" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(48px, 13vw, 68px);line-height:1.05;color:#F5F6FA;margin-top:6px;">FANTASY SOCIAL</div>
-<div class="landing-hint" style="font-size:14px;color:#9497A6;margin-top:22px;">Tap to enter</div>
+<div class="landing-logo" style="display:flex; align-items:center; gap:clamp(12px, 4vw, 18px);">
+  <div style="width:clamp(52px, 14vw, 64px); height:clamp(52px, 14vw, 64px); border:2.5px solid #FF6A3D; border-radius:19px; background:rgba(255,106,61,0.07); display:flex; align-items:center; justify-content:center; position:relative; box-shadow:0 0 26px rgba(255,106,61,0.18); flex-shrink:0;">
+    <div style="position:absolute; top:-2.5px; left:-2.5px; width:15px; height:15px; border-top:2.5px solid #FF6A3D; border-left:2.5px solid #FF6A3D; border-radius:19px 0 0 0;"></div>
+    <div style="position:absolute; bottom:-2.5px; right:-2.5px; width:15px; height:15px; border-bottom:2.5px solid #FF6A3D; border-right:2.5px solid #FF6A3D; border-radius:0 0 19px 0;"></div>
+    <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(18px, 5vw, 24px); color:#FF6A3D; letter-spacing:-0.5px;">FS</span>
+  </div>
+  <div style="text-align:left; border-left:2px solid rgba(255,106,61,0.25); padding-left:clamp(12px, 3vw, 16px);">
+    <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:clamp(13px, 3.5vw, 17px); color:#9497A6; letter-spacing:1px; line-height:1.1;">FANTASY</div>
+    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(22px, 7.5vw, 29px); color:#FF6A3D; letter-spacing:-0.5px; line-height:1.05; margin-top:1px;">SOCIAL</div>
+    <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:clamp(9px, 2.2vw, 10px); color:#9497A6; letter-spacing:1.5px; text-transform:uppercase; margin-top:5px;">Weekly drops &middot; built to share</div>
+  </div>
+</div>
+<div class="landing-hint" style="font-size:14px;color:#9497A6;margin-top:26px;">Tap to enter</div>
 </a>
 </body></html>

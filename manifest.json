@@ -1,1 +1,1 @@
-{"weeks": [{"label": "Week 1", "href": "home/Week%201/", "drops": [{"label": "Wednesday", "href": "home/Week%201/wednesday/"}]}, {"label": "Week 2", "href": "home/Week%202/", "drops": []}, {"label": "Week 3", "href": "home/Week%203/", "drops": []}]}
+{"weeks": [{"label": "Week 1", "href": "home/Week%201/", "drops": [{"label": "Wednesday", "href": "home/Week%201/wednesday/"}, {"label": "Tuesday", "href": "home/Week%201/tuesday/"}]}, {"label": "Week 2", "href": "home/Week%202/", "drops": []}, {"label": "Week 3", "href": "home/Week%203/", "drops": []}]}

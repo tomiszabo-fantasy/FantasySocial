@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Fantasy Social</title>
+<title>BUDAPEST FILMMAKERS</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.44.0/tabler-icons.min.css">
 <style>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
@@ -105,14 +105,16 @@ body {
   <a class="sidebar-home-btn" href="../home/"><i class="ti ti-home"></i> Home</a>
   <div class="sidebar-tree" id="sidebar-tree"><div class="empty" style="padding:12px;text-align:left;">Loading…</div></div>
 </div>
-<div class="main-content"><div class="content-bg"><div class="section" style="padding-top:12px;">
-<div class="tagline">Pick a design to browse this season's cards</div>
-<div class="grid grid-2"><a class="glass-tile" href="broadcast/">
-<div class="swatch" style="background:linear-gradient(135deg,#FF6A3D,#FFB199);"></div>
-<div class="tile-label">Broadcast</div>
-<div class="tile-sub">TV lower-third style</div>
-</a></div>
-</div></div></div>
+<div class="main-content"><div class="content-bg"><div class="page-title">BUDAPEST FILMMAKERS</div><div class="section"><div class="grid grid-3"><a class="icon-tile" href="Week 1/">
+<i class="ti ti-calendar-week"></i>
+<div class="tile-label">Week 1</div>
+</a><a class="icon-tile" href="Week 2/">
+<i class="ti ti-calendar-week"></i>
+<div class="tile-label">Week 2</div>
+</a><a class="icon-tile" href="Week 3/">
+<i class="ti ti-calendar-week"></i>
+<div class="tile-label">Week 3</div>
+</a></div></div></div></div>
 </div>
 <script>
 (function(){
@@ -141,12 +143,10 @@ body {
   }
   function renderDrops(drops){ return drops.map(function(d){ return nodeHtml(d.label, d.href, ''); }).join(''); }
   function renderWeeks(weeks){ return weeks.map(function(w){ return nodeHtml(w.label, w.href, renderDrops(w.drops)); }).join(''); }
-  function renderLeagues(leagues){ return leagues.map(function(l){ return nodeHtml(l.label, l.href, renderWeeks(l.weeks)); }).join(''); }
-  function renderDesigns(designs){ return designs.map(function(d){ return nodeHtml(d.label, d.href, renderLeagues(d.leagues)); }).join(''); }
 
   fetch(rootPrefix + "manifest.json")
     .then(function(r){ return r.json(); })
-    .then(function(data){ document.getElementById('sidebar-tree').innerHTML = renderDesigns(data.designs); })
+    .then(function(data){ document.getElementById('sidebar-tree').innerHTML = renderWeeks(data.weeks); })
     .catch(function(e){ console.error('Sidebar manifest failed to load', e); });
 
   document.getElementById('sidebar-tree').addEventListener('click', function(e){
